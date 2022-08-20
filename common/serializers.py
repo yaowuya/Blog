@@ -32,3 +32,15 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 },
             }
         }
+
+
+class UserPasswordSerializer(serializers.ModelSerializer):
+    new_password = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["id", "username", "password", "new_password"]
+
+    @staticmethod
+    def get_new_password(obj):
+        return obj.password or ""

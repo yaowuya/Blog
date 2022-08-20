@@ -135,3 +135,13 @@ REST_FRAMEWORK = {
 
 # User 定义User 鉴权对应的模型，因为我们改写的默认的 User 表
 AUTH_USER_MODEL = "common.User"
+
+# 邮箱配置
+EMAIL_BACKEND = "django_smtp_ssl.SSLEmailBackend"
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
+EMAIL_HOST = "smtp.126.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "zrfyaowuya@126.com"
+EMAIL_HOST_PASSWORD = "zrf667165"
+EMAIL_SUBJECT_PREFIX = u"[LSS]"
+EMAIL_USE_SSL = True

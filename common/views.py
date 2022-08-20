@@ -40,3 +40,12 @@ class UserLogoutViewSet(GenericAPIView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return Response({"detail": "logout successful !"})
+
+
+def get_random_password():
+    import random
+    import string
+
+    return "".join(
+        random.sample(string.ascii_letters + string.digits + string.punctuation, 8)
+    )
