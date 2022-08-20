@@ -13,4 +13,5 @@ urlpatterns = [
     path("", include(router.urls)),
     url(r"^user/login", views.UserLoginViewSet.as_view()),
     url(r"^user/logout", views.UserLogoutViewSet.as_view()),
+    url(r"^user/pwd", views.PasswordUpdateViewSet.as_view()),
 ]
