@@ -1,6 +1,6 @@
 # 基于 Git 的 pre-commit 配置指南
 
-##  1 . 背景
+## 1 . 背景
 
 为了尽早发现代码问题，防止不符合规范的代码提交到仓库，强烈推荐每位开发者配置 `pre-commit` 代码提交前检查
 
@@ -9,7 +9,6 @@
 `pre-commit` 检查通过本地配置实现，因此每个开发者在开发之前都必须先配好本地的 Git Hooks。
 
 推荐使用 [pre-commit](https://pre-commit.com/) 框架对 Git Hooks 进行配置及管理。**pre-commit**是由 python 实现的，用于管理和维护多个 pre-commit hooks 的实用框架。它提供了插件式的管理机制，并拥有大量的官方与第三方插件（需要时可自行开发），能够快速实现常见的代码检查任务，如 `eslint` 检查（支持跨语言），`flake8` 检查，`isort` 代码美化等。
-
 
 ### 配置方式 (新接入项目)
 
@@ -61,9 +60,7 @@ pre-commit install --hook-type commit-msg --allow-missing-config
 ### 触发 Git Hooks
 
 - pre-commit 代码检查无需手动触发，只要执行 `git commit ` 命令，就会自动触发（无论是在终端还是IDE）。请注意，代码检查的范围只是本次提交所修改的文件，而非全局。
-
 - 若代码检查不通过，提交会被中断。可以根据具体的错误信息去调整代码，只有所有的检查项全部通过方可 push。
-
 - 配置 `pre-commit` 后，第一次执行 `git commit` 命令时会联网下载所需的插件依赖，大概需要一分钟的时间，请耐心等待。
 
 ## 3 . 常用插件说明
@@ -106,13 +103,11 @@ https://python-modernize.readthedocs.io/en/latest/fixers.html#
 
 若该项结果为 `failed`，需要根据给出的错误信息手动进行调整。（autopep8 会尽可能地把能自动修复的都修复了，剩下的只能手动修复）
 
-
 关于 flake8 规则代码与具体示例，可查阅 https://lintlyci.github.io/Flake8Rules/
 
 ### check-commit-message
 
 检查 git 提交信息是否符合蓝鲸 SaaS 开发规范，需要将附录中的 `check_commit_message.py` 拷贝到项目中
-
 
 commit message 必须包含以下前缀之一:
 
@@ -142,12 +137,11 @@ commit message 必须包含以下前缀之一:
 
 如果提交者认是沿用过去的标准或者字段有其特定用法，可以直接再次提交，第二次提交会跳过第一次检测的错误信息不再报错。
 
-
 ### check-requirements
 
 检查项目 requirements.txt 是否包含黑名单中的 SDK，以及 SDK 的安装版本号是否满足最低版本要求。
 
 ## 4. 已知问题
 
-- Stackless 版本的 Python 可能无法使用 pre-commit 
+- Stackless 版本的 Python 可能无法使用 pre-commit
 - black 和 isort 在某些情况下会冲突，导致两个插件修改同一个文件，无法提交；此时可以屏蔽 black 解决，结局后开启 black 后再次提交
